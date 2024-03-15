@@ -635,7 +635,8 @@ async def add_conversation():
                 uuid=str(uuid.uuid4()),
                 conversation_id=conversation_id,
                 user_id=user_id,
-                input_message=messages[-1]
+                input_message=messages[-1],
+                user_name=authenticated_user['user_name']
             )
             if createdMessageValue == "Conversation not found":
                 raise Exception("Conversation not found for the given conversation ID: " + conversation_id + ".")
@@ -684,6 +685,7 @@ async def update_conversation():
                     uuid=str(uuid.uuid4()),
                     conversation_id=conversation_id,
                     user_id=user_id,
+                    user_name=authenticated_user['user_name'],
                     input_message=messages[-2]
                 )
             # write the assistant message
@@ -691,6 +693,7 @@ async def update_conversation():
                 uuid=messages[-1]['id'],
                 conversation_id=conversation_id,
                 user_id=user_id,
+                user_name=authenticated_user['user_name'],
                 input_message=messages[-1]
             )
         else:
