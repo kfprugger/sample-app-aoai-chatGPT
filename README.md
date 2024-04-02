@@ -1,4 +1,4 @@
-# [Preview] Sample Chat App with AOAI
+# [Preview] Sample Chat App with AOAI w/ Cosmos DB User Auditing
 
 This repo contains sample code for a simple chat webapp that integrates with Azure OpenAI. Note: some portions of the app use preview APIs.
 
@@ -75,14 +75,19 @@ Please see the [section below](#add-an-identity-provider) for important informat
 3. Start the app with `start.cmd`. This will build the frontend, install backend dependencies, and then start the app. Or, just run the backend in debug mode using the VSCode debug configuration in `.vscode/launch.json`.
 4. You can see the local running app at http://127.0.0.1:50505.
 
-#### Local Setup: Enable Chat History
-To enable chat history, you will need to set up CosmosDB resources. The ARM template in the `infrastructure` folder can be used to deploy an app service and a CosmosDB with the database and container configured. Then specify these additional environment variables: 
+# Local Setup: Enable Chat History w/ User Audit
+To enable chat history, you will need to set up CosmosDB resources. The ARM template in the `infrastructure` folder can be used to deploy an app service and a CosmosDB with the database and container configured. The username along with the input message as well as the completion will be captured. If you want this type of audit logging, then specify these additional environment variables: 
 - `AZURE_COSMOSDB_ACCOUNT`
 - `AZURE_COSMOSDB_DATABASE`
 - `AZURE_COSMOSDB_CONVERSATIONS_CONTAINER`
 - `AZURE_COSMOSDB_ACCOUNT_KEY`
 
 As above, start the app with `start.cmd`, then visit the local running app at http://127.0.0.1:50505. Or, just run the backend in debug mode using the VSCode debug configuration in `.vscode/launch.json`.
+
+**Here's a sample of the username and other information captured in the Cosmos DB backend:**
+
+![image](https://github.com/kfprugger/sample-app-aoai-chatGPT/assets/20729981/232e52e1-3124-4a5e-8763-54999fb4f5b8)
+
 
 #### Local Setup: Enable Message Feedback
 To enable message feedback, you will need to set up CosmosDB resources. Then specify these additional environment variable:
